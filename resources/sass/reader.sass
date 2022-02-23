@@ -1,0 +1,189 @@
+@import 'variables'
+
+/*
+ * z-index: 
+ * 
+ * 1-2 - overlay dark/light
+ * 3 - base
+ * 4 - surfase
+ * 5 - overflow (pop)
+ *
+ *
+ */
+
+/*
+ * Cветлая тема
+ */
+
+$l-overlay-light: #383b40
+$l-overlay-dark: #2d2f34
+$l-surface: #27292d
+$l-base: #1f2023
+$l-overflow: #010101
+
+/*
+ * Сепия
+ */
+
+$s-overlay-light: #383b40
+$s-overlay-dark: #2d2f34
+$s-surface: #27292d
+$s-base: #f5efdd
+$s-overflow: #010101
+
+/*
+ * Тёмная тема
+ */
+
+$d-overlay-light: #383b40
+$d-overlay-dark: #2d2f34
+$d-surface: #27292d
+$d-base: #1f2023
+$d-overflow: #010101
+
+.reader-header
+    position: fixed
+    top: 0px
+    left: 0
+    width: 100%
+    padding: 16px 15px 8px 15px
+    background: #fff
+    z-index: 5
+    transition: .4s ease-out
+
+    &.hidden
+        top: -100px
+
+    .title
+        text-align: center
+        color: $maingray
+        text-transform: uppercase
+        font-size: 20px
+        line-height: 35px
+        user-select: none
+        font-weight: 500
+        width: 70vw
+        overflow: hidden
+        white-space: nowrap
+        margin: 0 auto
+        position: relative
+
+    .more i, .back i
+        color: $maingray
+        line-height: 35px
+        font-size: 25px
+        user-select: none
+        cursor: pointer
+
+    .more, .back
+        position: absolute
+        width: 25px
+        height: 35px
+        top: 15px
+
+    .more
+        right: 15px
+    .back
+        left: 15px
+
+.text
+    z-index: 3
+    padding: 65px 2vw 2vh 2vw
+    text-align: justify
+
+.options
+    position: fixed
+    width: 100%
+    left: 0
+    bottom: -60%
+    height: 60%
+    background: #fff
+    box-shadow: 0px 0px 0px 0px #eaeef3
+    border-radius: 20px 20px 0 0
+    transition: .2s ease-out
+    z-index: 5
+
+    &.open
+        bottom: 0
+        box-shadow: 0px 0px 15px 2px #eaeef3
+
+    .theme-selector
+        width: 100%
+        margin: 0
+        padding: 20px 0
+        display: flex
+        align-items: center
+        justify-content: space-around
+
+        li
+            width: 23%
+            height: 40px
+            list-style-type: none
+            line-height: 40px
+            text-align: center
+            border-radius: 20px
+            user-select: none
+
+            @media (prefers-color-scheme: light)
+                &:nth-child(1)
+                    color: #000000
+                    background: #ffffff
+                    border: 1px solid #ded7d0
+
+            @media (prefers-color-scheme: dark)
+                &:nth-child(1)
+                    color: #ffffff
+                    opacity: .9
+                    background: $d-base
+                    border: 1px solid #7c7c7c
+
+            &:nth-child(2)
+                color: #000000
+                background: #ffffff
+                border: 1px solid #ded7d0
+
+            &:nth-child(3)
+                color: #86675b
+                background: $s-base
+                border: 1px solid #ded7d0
+
+            &:nth-child(4)
+                color: #ffffff
+                opacity: .9
+                background: $d-base
+                border: 1px solid #7c7c7c
+
+            &.active
+                border: 1px solid #09c6f9
+
+        .letter-spacing-selector
+
+
+
+@media (prefers-color-scheme: dark)
+    .theme-auto    
+        background: $d-base
+
+        .reader-header
+            background: $d-surface
+
+            .title
+                color: #ffffff
+                opacity: .9
+
+            .more i, .back i
+                color: #ffffff
+                opacity: .9
+
+        .text
+            color: #ffffff
+            opacity: .9
+
+        .options
+            background: $d-surface
+            box-shadow: 0px 0px 0px 0px $s-overflow
+
+            &.open
+                bottom: 0
+                box-shadow: 0px 0px 15px 2px #000000
+

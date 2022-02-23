@@ -1,0 +1,644 @@
+/*
+ *   основное - default
+ *  
+ *   navbar - 10
+ *   header - 11
+ *
+ *   книга - 1000
+ *   поиск - 1000
+ **/
+    
+@import 'variables'
+
+@mixin background-gradient
+    background-image: linear-gradient(90deg, $base-color 0px, $shine-color 40px, $base-color 80px) 
+    background-size: 800px
+
+@mixin background-gradient-dark
+    background-image: linear-gradient(90deg, $d-overlay-dark 0px, $d-overlay-light 40px, $d-overlay-dark 80px) 
+    background-size: 600px
+
+@mixin background-gradient-big
+  background-image: linear-gradient(90deg, $base-color 0px, $shine-color 40px, $base-color 80px) 
+  background-size: 800px
+
+@mixin background-line
+  background-image: linear-gradient(90deg, $base-color 0px, $shine-color 40px, $base-color 80px) 
+  background-size: 1000px
+
+@mixin background-line-dark
+  background-image: linear-gradient(90deg, $d-overlay-dark 0px, $d-overlay-light 40px, $d-overlay-dark 80px) 
+  background-size: 1000px
+
+$base-color: #f3f3f3
+$shine-color: #ececec
+$animation-duration: 2.0s
+
+@keyframes shine-book
+  0%
+    background-position: -150px
+  
+  40%, 100%
+    background-position: 150px
+
+@keyframes shine-big-book
+  0%
+    background-position: -150px
+  
+  40%, 100%
+    background-position: 250px
+
+@keyframes shine-line
+  0%
+    background-position: -400px
+  
+  40%, 100%
+    background-position: 400px
+
+@keyframes show-search
+    0%
+        clip-path: circle(24px at 15px 15px)
+    100%
+        clip-path: circle(150vh at 15px 15px)
+
+@keyframes hide-search
+    0%
+        width: 100%
+        height: 100%
+        -webkit-clip-path: circle(150vh at 15px 15px)
+        clip-path: circle(150vh at 15px 15px)
+    100%
+        width: 0%
+        height: 0%
+        -webkit-clip-path: circle(24px at 15px 15px)
+        clip-path: circle(1px at 15px 15px)
+
+@keyframes bookinfo-close
+    0%
+        top: 0vh
+        border-radius: 0px 0px 0px 0px
+    20%
+        border-radius: 25px 25px 0px 0px
+    100%      
+        top: 100vh
+        border-radius: 25px 25px 0px 0px
+
+@keyframes bookinfo-open
+    0%
+        top: 100%
+        border-radius: 25px 25px 0px 0px
+    80%
+        border-radius: 25px 25px 0px 0px
+    100%      
+        top: 0%
+        border-radius: 0px 0px 0px 0px
+
+@keyframes book-cover-to-bookinfo
+    0%
+        width: 100px
+        height: 150px
+        transform: translate3d(0, 0, 0) 
+    50%
+        width: 100px
+        height: 150px
+    99%
+        position: fixed
+    100%
+        width: 260px
+        height: 400px
+
+@keyframes book-info-buttons
+    0%
+        bottom: -75px
+    40%
+        bottom: -75px
+    100%
+        bottom: 10px
+
+/*
+ * Тёмная тема
+ */
+
+$d-overlay-light: #383b40
+$d-overlay-dark: #2d2f34
+$d-surface: #27292d
+$d-base: #1f2023
+$d-overflow: #010101
+
+body
+    padding: 0px 0 50px 0
+
+    &.blockScroll
+        overflow: hidden
+
+.header
+    padding: 16px 15px 8px 15px
+    width: 100%
+    position: fixed
+    top: 0
+    left: 0
+    background: #fff
+    z-index: 11
+
+    .title
+        text-align: center
+        color: $maingray
+        text-transform: uppercase
+        font-size: 20px
+        line-height: 35px
+        user-select: none
+        font-weight: 500
+
+    .search-btn i, .add i
+        color: $maingray
+        line-height: 35px
+        font-size: 25px
+        user-select: none
+        cursor: pointer
+            
+    .add, .search-btn
+        position: absolute
+        width: 25px
+        height: 35px
+        top: 15px
+
+    .add
+        right: 15px
+    .search-btn
+        left: 15px
+
+.search
+    position: fixed
+    display: block
+    z-index: 1000 
+    border-radius: 0%
+    overflow: hidden
+    width: 100%
+    height: 100%
+    background: #fff
+    top: 0px
+    left: 0px
+
+    .search-string
+        display: flex
+        margin: 15px 15px 2vw 15px
+        width: calc(100vw - 30px)
+
+        span
+            display: block
+            color: #6c798a
+            line-height: 40px
+            font-size: 20px
+            cursor: pointer
+            margin: 0 10px
+
+        form 
+            width: 100%
+
+            label
+                position: relative
+                width: 100%
+
+                &::after
+                    font-family: 'Material Icons'
+                    position: absolute
+                    top: 0
+                    left: 0
+                    content: 'search'
+                    font-size: 25px
+                    text-align: center
+                    line-height: 40px
+                    display: block
+                    width: 40px
+                    height: 40px
+                    /*background: #fff*/
+                    color: #b7bec6
+                    border-radius: 5px 5px 0 0  
+
+                input
+                    width: 100%
+                    height: 40px
+                    color: #b7bec6
+                    padding: 0 0 0 40px
+                    border: none
+                    outline: none
+                    box-shadow: 0px 0px 15px 2px #eaeef3
+                    transition: .3s
+                    border-radius: 5px 5px 5px 5px 
+
+                    &::placeholder
+                        color: #b7bec6
+
+                    &:focus
+                        background: #f5f7fb
+                        box-shadow: 0px 0px 0px 0px #eaeef3
+                        color: #afb5b9
+
+    .results            
+        position: relative
+
+        .title
+            position: relative
+            margin: 0 15px 10px 15px
+            font-size: 18px
+            font-weight: 700
+            color: #727687
+        
+            .button
+                position: absolute
+                top: 0
+                right: 15px
+                width: 28px
+                height: 28px
+                text-align: center
+
+                i
+                    font-size: 18px
+                    line-height: 28px
+                    user-select: none
+                    cursor: pointer
+
+        .suggestions
+            display: flex
+            margin: 0 15px 10px 15px
+
+            .book:first-child
+                margin: 0 10px 0px 0px
+        
+        .serch-results
+            margin: 0 15px 10px 15px
+
+            .search-item
+                display: inline-block
+                padding: 5px 15px
+                background: #f5f7fb
+                border-radius: 5px
+                margin: 0 5px 5px 0
+                color: #afb3b8
+                cursor: pointer
+    
+    .book
+        display: flex
+        margin: 0 10px 0px 10px
+        cursor: pointer
+        transition: .5s
+
+        .image
+            margin: 0 auto
+            width: 100px
+            height: 150px
+            border-radius: 5px
+            overflow: hidden
+            background-size: cover
+            background-position: 50% 50%
+           
+        &.skeleton .image
+            @include background-gradient
+            animation: shine-book $animation-duration infinite ease-out
+
+        &.hide
+            opacity: 0
+            transition: .1s
+
+.book-navbar
+    position: fixed
+    width: 100%
+    background: #fff
+    bottom: 0
+    left: 0
+    padding: 5px 0 0px 0
+    margin: 0 0 0 0
+    z-index: 10
+    display: flex
+
+    li
+        list-style-type: none
+        width: 25vw
+        text-align: center
+        color: $not-active-gray
+        height: 45px
+        
+        i
+            user-select: none
+            cursor: pointer
+            line-height: 45px
+
+    li.active
+        color: $maingray
+
+.bookshelf
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-around
+    align-content: space-around
+    flex-direction: row
+    width: 100%
+    margin: 70px 10px 0px 0px
+
+    .book
+        display: flex
+        margin: 0 10px 20px 10px
+        cursor: pointer
+        transition: .5s
+
+        .image
+            margin: 0 auto
+            width: 100px
+            height: 150px
+            border-radius: 5px
+            overflow: hidden
+            background-size: cover
+            background-position: 50% 50%
+           
+        &.skeleton .image
+            @include background-gradient
+            animation: shine-book $animation-duration infinite ease-out
+
+        &.hide
+            opacity: 0
+            transition: .1s
+
+.moving-book-cover
+    position: fixed
+    width: 100px
+    height: 150px
+    background-size: cover
+    background-position: 50% 50%
+    border-radius: 5px
+    //transition: transform 2s, .3s
+    z-index: 1001
+    
+.book-info
+    display: block
+    position: fixed
+    width: 100vw
+    height: 100%
+    top: 0%
+    left: 0
+    background: #fff
+    z-index: 1000
+
+    div[data-simplebar]
+        width: 100%
+        height: 100%
+        padding-bottom: 100px
+
+    &.open
+        top: 100%
+
+    .close-button
+        position: absolute
+        top: 15px
+        right: 15px
+        cursor: pointer
+        user-select: none
+        z-index: 1050
+
+        i
+            color: #6c798a
+            padding: 0 0 20px 20px
+
+    .book-cover
+        width: 260px
+        height: 400px
+        background: #fff
+        margin: 6vh auto 25px auto
+        border-radius: 10px
+        cursor: pointer
+        overflow: hidden
+        transition: 1s
+        background-size: cover
+        background-position: 50% 50%
+
+    .title
+        color: #6c7b8c
+        font-size: 25px
+        font-weight: 700
+        text-align: center
+        margin: 0 auto 10px auto
+        line-height: 1.2
+        max-width: 95vw
+
+    .author
+        text-align: center
+        font-family: 'EB Garamond', serif
+        font-weight: 500
+        font-size: 16px
+        width: 80vw
+        margin: 0 10vw 10px 10vw
+
+    .description
+        width: 80vw
+        margin: 0 10vw
+        color: #b5bcc4
+        font-size: 17px
+        position: relative
+        text-align: justify
+
+        .desc-open
+            position: absolute
+            right: 0
+            bottom: 1px
+            background: #ffffff
+            box-shadow: white -10px 0px 15px 8px
+            color: #6c7b8c
+            font-weight: 700
+            cursor: pointer
+
+        &.minimize 
+            height: 6.4em
+            overflow: hidden
+
+        &.minimize ::after
+            display: none
+
+        .desc-close
+            text-align: center
+            margin: 10px 0
+            cursor: pointer
+            color: #6c7b8c
+            font-weight: 700
+
+    &.skeleton
+        .book-cover
+            //@include background-gradient-big
+            //animation: shine-big-book $animation-duration infinite ease-out
+            box-shadow: none!important
+
+        .title
+            border-radius: 5px
+            width: 170px
+            min-height: 40px
+            @include background-gradient
+            animation: shine-book $animation-duration infinite ease-out
+            box-shadow: none!important
+            overflow: hidden
+
+        .author
+            border-radius: 5px
+            width: 170px
+            min-height: 20px
+            margin: 0 auto 10px auto
+            @include background-gradient
+            animation: shine-book $animation-duration infinite ease-out
+            box-shadow: none!important
+            overflow: hidden
+
+        .description
+            
+            .line
+                @include background-line
+                animation: shine-line $animation-duration infinite ease-out
+                min-height: 20px
+                border-radius: 5px
+                margin: 0 0 5px 0
+
+    .buttons
+        position: absolute
+        bottom: 10px
+        left: 0px
+        display: flex
+        width: 100vw
+        padding: 0 10vw
+        justify-content: space-between
+        animation: book-info-buttons .2s ease-out
+        
+        .read, .reviews
+            background: #fff
+            box-shadow: 0px 0px 15px 2px #eaeef3
+            font-weight: 700
+            text-transform: uppercase
+            text-align: center
+            padding: 15px 0px
+            font-size: 16px
+            border-radius: 5px
+            width: 38vw
+            cursor: pointer
+            user-select: none
+
+        .read
+            margin-left: 1vw
+
+        .reviews
+            margin-right: 1vw
+            color: #677486
+
+.bookinfo-enter-active
+    animation: bookinfo-open .4s ease-out
+
+.bookinfo-leave-active
+    animation: bookinfo-close .3s ease-out
+
+.searchanim-enter-active
+    animation: show-search .3s ease-out
+
+.searchanim-leave-active
+    animation: show-search .3s ease-out reverse
+
+@media (prefers-color-scheme: dark)
+    .theme-auto  
+        background: $d-base
+
+        .header
+            background: $d-surface
+
+            .title
+                color: #ffffff
+
+            .add i, .search-btn i, .title
+                color: #ffffff
+
+        .book-navbar
+            background: $d-surface
+
+            li
+                color: #ffffff
+                opacity: .2
+
+                &.active
+                    color: #ffffff
+                    opacity: .9
+    
+        .bookshelf
+            .book
+
+                &.skeleton .image
+                    @include background-gradient-dark
+                    animation: shine-book $animation-duration infinite ease-out
+
+
+        .book-info
+            background: $d-overlay-light
+
+            .book-cover
+                background: $d-overlay-dark
+
+            .title
+                color:#ffffff
+                opacity: .9
+
+            .close-button
+                i
+                    color: #ffffff
+
+            .buttons
+                .read, .reviews
+                    background: $d-overlay-dark
+                    box-shadow: 0px 0px 0px 0px #000
+
+                .reviews
+                    color: rgba(255, 255, 255, 0.9)
+
+            .description
+                color:#ffffff
+                opacity: .9
+
+                .desc-open
+                    background: $d-overlay-light
+                    box-shadow: $d-overlay-light -10px 0px 15px 8px
+                    color:#ffffff
+                    opacity: .9
+
+                .desc-close
+                    color:#ffffff
+                    opacity: .9
+
+            &.skeleton
+                .title
+                    @include background-gradient-dark
+                    animation: shine-book $animation-duration infinite ease-out
+
+                .author
+                    @include background-gradient-dark
+                    animation: shine-book $animation-duration infinite ease-out
+
+                .description
+                    
+                    .line
+                        @include background-line-dark
+                        animation: shine-line $animation-duration infinite ease-out
+
+        .search
+            background: $d-overlay-light
+            color: rgba(255, 255, 255, 0.9)
+            
+            .search-string
+
+                span
+                    color: rgba(255, 255, 255, 0.9)
+
+                form 
+
+                    label
+
+                        &::after
+                            background: $d-surface
+                            color: rgba(255, 255, 255, 0.9)
+
+                        input
+                            color: rgba(255, 255, 255, 0.9)
+                            box-shadow: 0px 0px 0px 0px #eaeef3
+                            background: $d-surface
+
+                            &::placeholder
+                                color: rgba(255, 255, 255, 0.9)

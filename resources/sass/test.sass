@@ -1,0 +1,204 @@
+@import 'variables'
+
+$star-color: #ffd700
+$dark: #343a40
+
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px)
+    .test
+        width: 90%
+
+    .test-images-block, .test-image img
+        height: 130px
+
+@media only screen and (min-width: 321px)
+    .test
+        width: 90%
+
+    .test-images-block, .test-image img
+        height: 150px
+
+@media only screen and (max-width: 320px)
+    .test
+        width: 90%
+
+    .test-images-block, .test-image img
+        height: 150px
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+    .test
+        width: 80%
+
+    .test-images-block, .test-image img
+        height: 150px
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)
+    .test
+        width: 80%
+
+    .test-images-block, .test-image img
+        height: 170px
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)
+    .test
+        width: 80%
+
+    .test-images-block, .test-image img
+        height: 150px
+
+@media only screen and (min-width: 1224px)
+    .test
+        width: 60%
+
+    .test-images-block, .test-image img
+        height: 170px
+
+@media only screen and (min-width: 1824px)
+    .test
+        width: 60%
+
+    .test-images-block, .test-image img
+        height: 170px
+
+
+.test
+    text-align: center
+    margin: 20px auto 0 auto
+    border: 1px solid $maingray
+    border-radius: 5px
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2)
+
+.test-back
+    position: fixed
+    left: 0
+    padding: 10px 0 0 1vw
+    cursor: pointer
+
+.slick-block
+    animation: anim 1.5s
+    animation-duration: 1.5s
+    display: block
+    position: relative
+    overflow: hidden
+
+@keyframes anim
+    from
+        left: -100%
+    to
+        left: 0
+
+
+/* Header */
+.test-header
+    display: flex
+    margin: 10px 1vw
+    padding: 0 2vw 0 2vw
+
+    li
+        list-style-type: none
+        text-align: center
+        color: #d3d7dc
+        margin: 0 20px 0 0
+
+        .stars-active
+            color: $star-color
+        .stars-count-active
+            color: $dark
+        .music-active
+            color: $indigo
+
+/* /Header */
+
+/* Content */
+.test-content
+    max-height: 400px
+    margin: 10px 1vw 10px 1vw
+    text-align: justify
+    .text
+        padding: 0 2vw 0 2vw
+/* /Content */
+
+/* TestImage */
+.test-images-block
+    margin: 20px 4.5vw
+
+.test-image
+    margin: 0 auto
+    padding: 0 5px 0 5px
+
+    img
+        width: 100%
+        display: block
+        border: 1px solid $maingray
+        border-radius: 5px
+
+
+.slick-prev:before, .slick-next:before
+    color: $maingray
+/* /TestImage */
+
+/* TestingUnit */
+.test-unit
+    margin: 20px 1vw
+    padding: 0 2vw 0 2vw
+    text-align: justify
+    position: relative
+    overflow: hidden
+
+.test-radio
+    position: relative
+
+    input[type=radio]
+        clip: rect(0,0,0,0)
+        overflow: hidden
+        position: absolute
+
+.test-radio-elem, .test-radio-label
+    cursor: pointer
+    vertical-align: middle
+    position: relative
+    margin: 0 0 0 40px
+
+.test-radio-elem
+    display: inline-block
+    position: absolute
+    margin-right: 4px
+    border: 2px solid $maingray
+    width: 20px
+    height: 20px
+    -webkit-border-radius: 999px
+    -moz-border-radius: 999px
+    border-radius: 999px
+    left: -30px
+
+    &:before
+        display: none
+        position: absolute
+        width: 100%
+        height: 100%
+        font-weight: bold
+        text-align: center
+        content: "\2022"
+        font-size: 1.5em
+        line-height: 0.8em
+        color: $maingray
+
+.test-radio-input:checked + .test-radio-elem:before
+    display: block
+
+.continue
+    text-align: right
+    font-size: larger
+    font-weight: 500
+    color: $maingray
+    padding: 0 2vw 0 2vw
+
+    .text
+        position: relative
+        bottom: 8px
+        left: 8px
+
+    .text, .next-step
+        cursor: pointer
+/* /TestingUnit */
